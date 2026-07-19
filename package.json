@@ -1,0 +1,13 @@
+{
+  "name": "ucab",
+  "version": "1.0.0",
+  "description": "UCab Booking Project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.2",
+    "server": "^1.0.42"
+  }
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UCab - Ride History</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+}
+
+header{
+    background:#0077ff;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:30px auto;
+}
+
+.search-box{
+    margin-bottom:20px;
+}
+
+.search-box input{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+.ride-card{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 5px 12px rgba(0,0,0,.1);
+}
+
+.ride-card h2{
+    color:#0077ff;
+    margin-bottom:10px;
+}
+
+.info{
+    margin:8px 0;
+    font-size:16px;
+}
+
+.completed{
+    color:green;
+    font-weight:bold;
+}
+
+.cancelled{
+    color:red;
+    font-weight:bold;
+}
+
+.ongoing{
+    color:orange;
+    font-weight:bold;
+}
+
+.buttons{
+    margin-top:15px;
+}
+
+button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    color:white;
+    margin-right:10px;
+}
+
+.cancel{
+    background:#e53935;
+}
+
+.rate{
+    background:#28a745;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+<h1>🚖 UCab Ride History</h1>
+</header>
+
+<div class="container">
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Search by pickup or destination..." onkeyup="searchRide()">
+</div>
+
+<div class="ride-card">
+
+<h2>Kurnool → Hyderabad</h2>
+
+<p class="info"><b>Driver:</b> Ravi Kumar</p>
+
+<p class="info"><b>Vehicle:</b> Sedan</p>
+
+<p class="info"><b>Car Number:</b> AP21 AB 4587</p>
+
+<p class="info"><b>Date:</b> 18 July 2026</p>
+
+<p class="info"><b>Fare:</b> ₹1200</p>
+
+<p class="completed">Completed</p>
+
+<div class="buttons">
+<button class="rate">⭐ Rate Driver</button>
+</div>
+
+</div>
+
+<div class="ride-card">
+
+<h2>Hyderabad → Airport</h2>
+
+<p class="info"><b>Driver:</b> Suresh</p>
+
+<p class="info"><b>Vehicle:</b> Mini</p>
+
+<p class="info"><b>Car Number:</b> TS09 XY 2211</p>
+
+<p class="info"><b>Date:</b> 16 July 2026</p>
+
+<p class="info"><b>Fare:</b> ₹450</p>
+
+<p class="ongoing">Ongoing</p>
+
+<div class="buttons">
+<button class="cancel">Cancel Ride</button>
+</div>
+
+</div>
+
+<div class="ride-card">
+
+<h2>Kurnool → Nandyal</h2>
+
+<p class="info"><b>Driver:</b> Mahesh</p>
+
+<p class="info"><b>Vehicle:</b> SUV</p>
+
+<p class="info"><b>Car Number:</b> AP39 ZZ 7890</p>
+
+<p class="info"><b>Date:</b> 12 July 2026</p>
+
+<p class="info"><b>Fare:</b> ₹900</p>
+
+<p class="cancelled">Cancelled</p>
+
+</div>
+
+</div>
+
+<script>
+
+function searchRide(){
+
+let input=document.getElementById("search").value.toLowerCase();
+
+let cards=document.querySelectorAll(".ride-card");
+
+cards.forEach(card=>{
+
+let text=card.innerText.toLowerCase();
+
+if(text.includes(input))
+card.style.display="block";
+else
+card.style.display="none";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

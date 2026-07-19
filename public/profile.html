@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UCab - Profile</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+.profile-card{
+width:450px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+text-align:center;
+}
+
+.avatar{
+width:120px;
+height:120px;
+border-radius:50%;
+background:#1565C0;
+color:white;
+font-size:50px;
+display:flex;
+justify-content:center;
+align-items:center;
+margin:auto;
+margin-bottom:20px;
+}
+
+.profile-card h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.info{
+text-align:left;
+margin-top:20px;
+}
+
+.info p{
+font-size:18px;
+margin:12px 0;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+background:#1565C0;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">🚖 UCab</div>
+
+<nav>
+
+    <div class="logo">
+        🚕 <span>UCab</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="bookride.html">Book Ride</a>
+
+        <a href="history.html">History</a>
+
+        <a href="profile.html">Profile</a>
+
+        <a href="services.html">Services</a>
+
+        <a href="about.html">About</a>
+
+        <a href="contact.html">Contact</a>
+
+        <a href="login.html">Login</a>
+
+    </div>
+
+</nav>
+
+</header>
+
+<div class="profile-card">
+
+<div class="avatar">👤</div>
+
+<h2 id="username">Guest</h2>
+
+<div class="info">
+
+<p><b>📱 Phone:</b> <span id="phone"></span></p>
+
+<p><b>📧 Email:</b> <span id="email"></span></p>
+
+<p><b>🚖 Total Rides:</b> <span id="rides"></span></p>
+
+<p><b>💰 Total Amount Spent:</b> ₹<span id="amount"></span></p>
+
+<p><b>⭐ Membership:</b> Premium User</p>
+
+</div>
+
+<button onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<script>
+
+let user = JSON.parse(localStorage.getItem("ucabUser"));
+
+let rideList = JSON.parse(localStorage.getItem("rides")) || [];
+
+let total = 0;
+
+rideList.forEach(function(r){
+
+total += Number(r.fare);
+
+});
+
+if(user){
+
+document.getElementById("username").innerHTML=user.name;
+document.getElementById("phone").innerHTML=user.phone;
+document.getElementById("email").innerHTML=user.email;
+
+}
+
+document.getElementById("rides").innerHTML=rideList.length;
+
+document.getElementById("amount").innerHTML=total;
+
+function logout(){
+
+if(confirm("Logout from UCab?")){
+
+window.location="login.html";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

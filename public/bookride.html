@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UCab - Book Ride</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+.container{
+    width:500px;
+    margin:40px auto;
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.container h2{
+    text-align:center;
+    color:#1565C0;
+    margin-bottom:20px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+#fare{
+    font-size:22px;
+    text-align:center;
+    color:green;
+    margin:20px 0;
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#1565C0;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0D47A1;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🚖 UCab
+</div>
+
+<nav>
+
+    <div class="logo">
+        🚕 <span>UCab</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="bookride.html">Book Ride</a>
+
+        <a href="history.html">History</a>
+
+        <a href="profile.html">Profile</a>
+
+        <a href="services.html">Services</a>
+
+        <a href="about.html">About</a>
+
+        <a href="contact.html">Contact</a>
+
+        <a href="login.html">Login</a>
+
+    </div>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<h2>Book Your Ride</h2>
+
+<input
+type="text"
+id="pickup"
+placeholder="Pickup Location">
+
+<input
+type="text"
+id="drop"
+placeholder="Drop Location">
+
+<select id="vehicle" onchange="calculateFare()">
+
+<option value="">Select Vehicle</option>
+
+<option value="Auto">Auto</option>
+
+<option value="Mini">Mini</option>
+
+<option value="Sedan">Sedan</option>
+
+<option value="SUV">SUV</option>
+
+</select>
+
+<div id="fare">
+Fare : ₹0
+</div>
+
+<button onclick="bookRide()">
+Book Ride
+</button>
+
+</div>
+
+<script>
+
+let fare=0;
+
+function calculateFare(){
+
+let vehicle=document.getElementById("vehicle").value;
+
+switch(vehicle){
+
+case "Auto":
+fare=120;
+break;
+
+case "Mini":
+fare=220;
+break;
+
+case "Sedan":
+fare=350;
+break;
+
+case "SUV":
+fare=550;
+break;
+
+default:
+fare=0;
+
+}
+
+document.getElementById("fare").innerHTML="Fare : ₹"+fare;
+
+}
+
+function bookRide(){
+
+let pickup=document.getElementById("pickup").value.trim();
+
+let drop=document.getElementById("drop").value.trim();
+
+let vehicle=document.getElementById("vehicle").value;
+
+if(pickup==""||drop==""||vehicle==""){
+
+alert("Please fill all fields");
+return;
+
+}
+
+let ride={
+
+pickup:pickup,
+drop:drop,
+vehicle:vehicle,
+fare:fare,
+date:new Date().toLocaleString(),
+status:"Booked"
+
+};
+
+let rides=JSON.parse(localStorage.getItem("rides")) || [];
+
+rides.push(ride);
+
+localStorage.setItem("rides",JSON.stringify(rides));
+
+window.location="confirmation.html";
+
+}
+
+</script>
+
+</body>
+</html>
